@@ -21,6 +21,6 @@ checkEnvVar() {
 	echo "$value"
 }
 
-checkEnvVar "GITHUB_ACTION" "$(env |grep "GITHUB_ACTION=")" false
-checkEnvVar "GITHUB_ACTION_REPOSITORY" "$(env |grep "GITHUB_ACTION_REPOSITORY=")" true
-checkEnvVar "GITHUB_ACTION_REF" "$(env |grep "GITHUB_ACTION_REF=")" true
+checkEnvVar "GITEA_ACTION" "$(env |grep "GITEA_ACTION=")" false
+checkEnvVar "GITEA_ACTION_REPOSITORY" "$(env |grep "GITEA_ACTION_REPOSITORY=")" true
+checkEnvVar "GITEA_ACTION_REF" "$(env |grep "GITEA_ACTION_REF=")" true

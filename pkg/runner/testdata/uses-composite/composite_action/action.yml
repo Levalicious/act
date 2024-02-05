@@ -80,7 +80,7 @@ runs:
       shell: bash
 
     - run: |
-        if [ -z "$GITHUB_ACTION_PATH" ]; then
+        if [ -z "$GITEA_ACTION_PATH" ]; then
           exit 1
         fi
         if [ -z "${{ github.action_path }}" ]; then
@@ -92,6 +92,6 @@ runs:
     - run: echo "::set-output name=test_output::test_output_value"
       id: output
       shell: bash
-    - run: echo "COMPOSITE_ACTION_ENV_OUTPUT=my test value" >> $GITHUB_ENV
+    - run: echo "COMPOSITE_ACTION_ENV_OUTPUT=my test value" >> $GITEA_ENV
       shell: bash
 

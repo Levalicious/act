@@ -6,7 +6,7 @@ jobs:
       MYGLOBALENV3: myglobalval3
     steps:
     - run: |
-        echo MYGLOBALENV1=myglobalval1 > $GITHUB_ENV
+        echo MYGLOBALENV1=myglobalval1 > $GITEA_ENV
         echo "::set-env name=MYGLOBALENV2::myglobalval2"
     - uses: nektos/act-test-actions/script@main
       with:

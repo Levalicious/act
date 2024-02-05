@@ -13,9 +13,9 @@ jobs:
     steps:
       - run: '[[ "$(pwd)" == "/root" ]]'
 
-      - run: mkdir -p "${GITHUB_WORKSPACE}/workdir"
+      - run: mkdir -p "${GITEA_WORKSPACE}/workdir"
 
-      - run: '[[ "$(pwd)" == "${GITHUB_WORKSPACE}/workdir" ]]'
+      - run: '[[ "$(pwd)" == "${GITEA_WORKSPACE}/workdir" ]]'
         working-directory: workdir
 
   top-level-workdir:

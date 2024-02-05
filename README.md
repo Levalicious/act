@@ -211,23 +211,23 @@ act -v
 When running `act` for the first time, it will ask you to choose image to be used as default.
 It will save that information to `~/.actrc`, please refer to [Configuration](#configuration) for more information about `.actrc` and to [Runners](#runners) for information about used/available Docker images.
 
-## `GITHUB_TOKEN`
+## `GITEA_TOKEN`
 
-GitHub [automatically provides](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#about-the-github_token-secret) a `GITHUB_TOKEN` secret when running workflows inside GitHub.
+GitHub [automatically provides](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#about-the-github_token-secret) a `GITEA_TOKEN` secret when running workflows inside GitHub.
 
 If your workflow depends on this token, you need to create a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) and pass it to `act` as a secret:
 
 ```bash
-act -s GITHUB_TOKEN=[insert token or leave blank and omit equals for secure input]
+act -s GITEA_TOKEN=[insert token or leave blank and omit equals for secure input]
 ```
 
 If [GitHub CLI](https://cli.github.com/) is installed, the [`gh auth token`](https://cli.github.com/manual/gh_auth_token) command can be used to automatically pass the token to act
 
 ```bash
-act -s GITHUB_TOKEN="$(gh auth token)"
+act -s GITEA_TOKEN="$(gh auth token)"
 ```
 
-**WARNING**: `GITHUB_TOKEN` will be logged in shell history if not inserted through secure input or (depending on your shell config) the command is prefixed with a whitespace.
+**WARNING**: `GITEA_TOKEN` will be logged in shell history if not inserted through secure input or (depending on your shell config) the command is prefixed with a whitespace.
 
 # Known Issues
 
@@ -492,7 +492,7 @@ act workflow_dispatch -e payload.json
 Act supports using and authenticating against private GitHub Enterprise servers.
 To use your custom GHE server, set the CLI flag `--github-instance` to your hostname (e.g. `github.company.com`).
 
-Please note that if your GHE server requires authentication, we will use the secret provided via `GITHUB_TOKEN`.
+Please note that if your GHE server requires authentication, we will use the secret provided via `GITEA_TOKEN`.
 
 Please also see the [official documentation for GitHub actions on GHE](https://docs.github.com/en/enterprise-server@3.0/admin/github-actions/about-using-actions-in-your-enterprise) for more information on how to use actions.
 

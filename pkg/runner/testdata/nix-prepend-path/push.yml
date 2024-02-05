@@ -18,9 +18,9 @@ jobs:
         echo '${{ github.workspace }}'
       working-directory: ${{ github.workspace }}/build
     - run: |
-        echo "$GITHUB_PATH"
-        echo '${{ github.workspace }}/build' > "$GITHUB_PATH"
-        cat "$GITHUB_PATH"
+        echo "$GITEA_PATH"
+        echo '${{ github.workspace }}/build' > "$GITEA_PATH"
+        cat "$GITEA_PATH"
     - run: |
         echo "$PATH"
         testtool

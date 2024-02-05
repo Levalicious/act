@@ -95,7 +95,7 @@ func cloneIfRequired(rc *RunContext, remoteReusableWorkflow remoteReusableWorkfl
 		},
 		func(ctx context.Context) error {
 			// Do not change the remoteReusableWorkflow.URL, because:
-			// 	1. Gitea doesn't support specifying GithubContext.ServerURL by the GITHUB_SERVER_URL env
+			// 	1. Gitea doesn't support specifying GithubContext.ServerURL by the GITEA_SERVER_URL env
 			//	2. Gitea has already full URL with rc.Config.GitHubInstance when calling newRemoteReusableWorkflowWithPlat
 			// remoteReusableWorkflow.URL = rc.getGithubContext(ctx).ServerURL
 			return git.NewGitCloneExecutor(git.NewGitCloneExecutorInput{

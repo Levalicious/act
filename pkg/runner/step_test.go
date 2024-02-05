@@ -118,7 +118,7 @@ func TestSetupEnv(t *testing.T) {
 	rc := &RunContext{
 		Config: &Config{
 			Env: map[string]string{
-				"GITHUB_RUN_ID": "runId",
+				"GITEA_RUN_ID": "runId",
 			},
 		},
 		Run: &model.Run{
@@ -154,36 +154,36 @@ func TestSetupEnv(t *testing.T) {
 	assert.Nil(t, err)
 
 	// These are commit or system specific
-	delete((env), "GITHUB_REF")
-	delete((env), "GITHUB_REF_NAME")
-	delete((env), "GITHUB_REF_TYPE")
-	delete((env), "GITHUB_SHA")
-	delete((env), "GITHUB_WORKSPACE")
-	delete((env), "GITHUB_REPOSITORY")
-	delete((env), "GITHUB_REPOSITORY_OWNER")
-	delete((env), "GITHUB_ACTOR")
+	delete((env), "GITEA_REF")
+	delete((env), "GITEA_REF_NAME")
+	delete((env), "GITEA_REF_TYPE")
+	delete((env), "GITEA_SHA")
+	delete((env), "GITEA_WORKSPACE")
+	delete((env), "GITEA_REPOSITORY")
+	delete((env), "GITEA_REPOSITORY_OWNER")
+	delete((env), "GITEA_ACTOR")
 
 	assert.Equal(t, map[string]string{
 		"ACT":                      "true",
 		"CI":                       "true",
-		"GITHUB_ACTION":            "",
-		"GITHUB_ACTIONS":           "true",
-		"GITHUB_ACTION_PATH":       "",
-		"GITHUB_ACTION_REF":        "",
-		"GITHUB_ACTION_REPOSITORY": "",
-		"GITHUB_API_URL":           "https:///api/v3",
-		"GITHUB_BASE_REF":          "",
-		"GITHUB_EVENT_NAME":        "",
-		"GITHUB_EVENT_PATH":        "/var/run/act/workflow/event.json",
-		"GITHUB_GRAPHQL_URL":       "https:///api/graphql",
-		"GITHUB_HEAD_REF":          "",
-		"GITHUB_JOB":               "1",
-		"GITHUB_RETENTION_DAYS":    "0",
-		"GITHUB_RUN_ID":            "runId",
-		"GITHUB_RUN_NUMBER":        "1",
-		"GITHUB_SERVER_URL":        "https://",
-		"GITHUB_TOKEN":             "",
-		"GITHUB_WORKFLOW":          "",
+		"GITEA_ACTION":            "",
+		"GITEA_ACTIONS":           "true",
+		"GITEA_ACTION_PATH":       "",
+		"GITEA_ACTION_REF":        "",
+		"GITEA_ACTION_REPOSITORY": "",
+		"GITEA_API_URL":           "https:///api/v3",
+		"GITEA_BASE_REF":          "",
+		"GITEA_EVENT_NAME":        "",
+		"GITEA_EVENT_PATH":        "/var/run/act/workflow/event.json",
+		"GITEA_GRAPHQL_URL":       "https:///api/graphql",
+		"GITEA_HEAD_REF":          "",
+		"GITEA_JOB":               "1",
+		"GITEA_RETENTION_DAYS":    "0",
+		"GITEA_RUN_ID":            "runId",
+		"GITEA_RUN_NUMBER":        "1",
+		"GITEA_SERVER_URL":        "https://",
+		"GITEA_TOKEN":             "",
+		"GITEA_WORKFLOW":          "",
 		"INPUT_STEP_WITH":          "with-value",
 		"RC_KEY":                   "rcvalue",
 		"RUNNER_PERFLOG":           "/dev/null",

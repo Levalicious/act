@@ -15,7 +15,7 @@ ACT ?= go run main.go
 
 HAS_TOKEN = $(if $(test -e ~/.config/github/token),true,false)
 ifeq (true,$(HAS_TOKEN))
-	export GITHUB_TOKEN := $(shell cat ~/.config/github/token)
+	export GITEA_TOKEN := $(shell cat ~/.config/github/token)
 endif
 
 .PHONY: pr
@@ -55,8 +55,8 @@ lint-md:
 lint-rest:
 	docker run --rm -it \
 		-v $(PWD):/tmp/lint \
-		-e GITHUB_STATUS_REPORTER=false \
-		-e GITHUB_COMMENT_REPORTER=false \
+		-e GITEA_STATUS_REPORTER=false \
+		-e GITEA_COMMENT_REPORTER=false \
 		megalinter/megalinter-go:v5
 
 .PHONY: lint

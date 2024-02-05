@@ -74,10 +74,7 @@ type Config struct {
 
 // GetToken: Adapt to Gitea
 func (c Config) GetToken() string {
-	token := c.Secrets["GITHUB_TOKEN"]
-	if c.Secrets["GITEA_TOKEN"] != "" {
-		token = c.Secrets["GITEA_TOKEN"]
-	}
+	token := c.Secrets["GITEA_TOKEN"]
 	return token
 }
 

@@ -15,12 +15,12 @@ jobs:
             using: composite
             steps:
             - run: |
-                echo WORKFLOW_GITHUB_CONTEXT="$WORKFLOW_GITHUB_CONTEXT"
-                echo COMPOSITE_GITHUB_CONTEXT="$COMPOSITE_GITHUB_CONTEXT"
-                [[ "$WORKFLOW_GITHUB_CONTEXT" = "$COMPOSITE_GITHUB_CONTEXT" ]]
+                echo WORKFLOW_GITEA_CONTEXT="$WORKFLOW_GITEA_CONTEXT"
+                echo COMPOSITE_GITEA_CONTEXT="$COMPOSITE_GITEA_CONTEXT"
+                [[ "$WORKFLOW_GITEA_CONTEXT" = "$COMPOSITE_GITEA_CONTEXT" ]]
               env:
-                WORKFLOW_GITHUB_CONTEXT: ${{ tojson(tojson(github.event)) }}
-                COMPOSITE_GITHUB_CONTEXT: ${{ '${{tojson(github.event)}}' }}
+                WORKFLOW_GITEA_CONTEXT: ${{ tojson(tojson(github.event)) }}
+                COMPOSITE_GITEA_CONTEXT: ${{ '${{tojson(github.event)}}' }}
               shell: bash
         shell: cp {0} action.yml
       - uses: ./

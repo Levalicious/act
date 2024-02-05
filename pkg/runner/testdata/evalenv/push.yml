@@ -11,11 +11,11 @@ jobs:
         run: |
           echo "$BUILD_DIR"
           echo "$EXPECTED_BUILD_DIR"
-          echo "$GITHUB_WORKSPACE/build"
+          echo "$GITEA_WORKSPACE/build"
         env:
           EXPECTED_BUILD_DIR: ${{ github.workspace }}/build
       - name: Test
         run: |
-          [ "$BUILD_DIR" = "$EXPECTED_BUILD_DIR" ] && [ "$BUILD_DIR" = "$GITHUB_WORKSPACE/build" ]
+          [ "$BUILD_DIR" = "$EXPECTED_BUILD_DIR" ] && [ "$BUILD_DIR" = "$GITEA_WORKSPACE/build" ]
         env:
           EXPECTED_BUILD_DIR: ${{ github.workspace }}/build

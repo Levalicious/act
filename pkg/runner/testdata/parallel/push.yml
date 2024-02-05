@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: docker://node:16-buster-slim
         with:
-          args: echo ${GITHUB_REF} | grep nektos/act
+          args: echo ${GITEA_REF} | grep nektos/act
       - uses: ./actions/docker-url
         with:
           args: npm install -g qs

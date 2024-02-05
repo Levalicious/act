@@ -60,7 +60,7 @@ function run() {
                 const file = _c.value;
                 console.log(file);
                 if (!file.startsWith(`${githubWorkspace}${path.sep}`)) {
-                    console.log(`Ignore '${file}' since it is not under GITHUB_WORKSPACE.`);
+                    console.log(`Ignore '${file}' since it is not under GITEA_WORKSPACE.`);
                     continue;
                 }
                 if (fs.statSync(file).isDirectory()) {
@@ -274,7 +274,7 @@ var ExitCode;
 function exportVariable(name, val) {
     const convertedVal = utils_1.toCommandValue(val);
     process.env[name] = convertedVal;
-    const filePath = process.env['GITHUB_ENV'] || '';
+    const filePath = process.env['GITEA_ENV'] || '';
     if (filePath) {
         const delimiter = `ghadelimiter_${uuid_1.v4()}`;
         // These should realistically never happen, but just in case someone finds a way to exploit uuid generation let's not allow keys or values that contain the delimiter.
@@ -305,7 +305,7 @@ exports.setSecret = setSecret;
  * @param inputPath
  */
 function addPath(inputPath) {
-    const filePath = process.env['GITHUB_PATH'] || '';
+    const filePath = process.env['GITEA_PATH'] || '';
     if (filePath) {
         file_command_1.issueCommand('PATH', inputPath);
     }
@@ -583,7 +583,7 @@ const fs = __importStar(__nccwpck_require__(7147));
 const os = __importStar(__nccwpck_require__(2037));
 const utils_1 = __nccwpck_require__(5278);
 function issueCommand(command, message) {
-    const filePath = process.env[`GITHUB_${command}`];
+    const filePath = process.env[`GITEA_${command}`];
     if (!filePath) {
         throw new Error(`Unable to find environment variable for file command ${command}`);
     }
@@ -767,7 +767,7 @@ exports.summary = exports.markdownSummary = exports.SUMMARY_DOCS_URL = exports.S
 const os_1 = __nccwpck_require__(2037);
 const fs_1 = __nccwpck_require__(7147);
 const { access, appendFile, writeFile } = fs_1.promises;
-exports.SUMMARY_ENV_VAR = 'GITHUB_STEP_SUMMARY';
+exports.SUMMARY_ENV_VAR = 'GITEA_STEP_SUMMARY';
 exports.SUMMARY_DOCS_URL = 'https://docs.github.com/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary';
 class Summary {
     constructor() {

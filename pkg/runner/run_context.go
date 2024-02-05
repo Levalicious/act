@@ -34,7 +34,7 @@ type RunContext struct {
 	Run                 *model.Run
 	EventJSON           string
 	Env                 map[string]string
-	GlobalEnv           map[string]string // to pass env changes of GITHUB_ENV and set-env correctly, due to dirty Env field
+	GlobalEnv           map[string]string // to pass env changes of GITEA_ENV and set-env correctly, due to dirty Env field
 	ExtraPath           []string
 	CurrentStep         string
 	StepResults         map[string]*model.StepResult
@@ -763,28 +763,28 @@ func (rc *RunContext) getGithubContext(ctx context.Context) *model.GithubContext
 	ghc := &model.GithubContext{
 		Event:            make(map[string]interface{}),
 		Workflow:         rc.Run.Workflow.Name,
-		RunID:            rc.Config.Env["GITHUB_RUN_ID"],
-		RunNumber:        rc.Config.Env["GITHUB_RUN_NUMBER"],
+		RunID:            rc.Config.Env["GITEA_RUN_ID"],
+		RunNumber:        rc.Config.Env["GITEA_RUN_NUMBER"],
 		Actor:            rc.Config.Actor,
 		EventName:        rc.Config.EventName,
 		Action:           rc.CurrentStep,
 		Token:            rc.Config.Token,
 		Job:              rc.Run.JobID,
 		ActionPath:       rc.ActionPath,
-		ActionRepository: rc.Env["GITHUB_ACTION_REPOSITORY"],
-		ActionRef:        rc.Env["GITHUB_ACTION_REF"],
-		RepositoryOwner:  rc.Config.Env["GITHUB_REPOSITORY_OWNER"],
-		RetentionDays:    rc.Config.Env["GITHUB_RETENTION_DAYS"],
+		ActionRepository: rc.Env["GITEA_ACTION_REPOSITORY"],
+		ActionRef:        rc.Env["GITEA_ACTION_REF"],
+		RepositoryOwner:  rc.Config.Env["GITEA_REPOSITORY_OWNER"],
+		RetentionDays:    rc.Config.Env["GITEA_RETENTION_DAYS"],
 		RunnerPerflog:    rc.Config.Env["RUNNER_PERFLOG"],
 		RunnerTrackingID: rc.Config.Env["RUNNER_TRACKING_ID"],
-		Repository:       rc.Config.Env["GITHUB_REPOSITORY"],
-		Ref:              rc.Config.Env["GITHUB_REF"],
+		Repository:       rc.Config.Env["GITEA_REPOSITORY"],
+		Ref:              rc.Config.Env["GITEA_REF"],
 		Sha:              rc.Config.Env["SHA_REF"],
-		RefName:          rc.Config.Env["GITHUB_REF_NAME"],
-		RefType:          rc.Config.Env["GITHUB_REF_TYPE"],
-		BaseRef:          rc.Config.Env["GITHUB_BASE_REF"],
-		HeadRef:          rc.Config.Env["GITHUB_HEAD_REF"],
-		Workspace:        rc.Config.Env["GITHUB_WORKSPACE"],
+		RefName:          rc.Config.Env["GITEA_REF_NAME"],
+		RefType:          rc.Config.Env["GITEA_REF_TYPE"],
+		BaseRef:          rc.Config.Env["GITEA_BASE_REF"],
+		HeadRef:          rc.Config.Env["GITEA_HEAD_REF"],
+		Workspace:        rc.Config.Env["GITEA_WORKSPACE"],
 	}
 	if rc.JobContainer != nil {
 		ghc.EventPath = rc.JobContainer.GetActPath() + "/workflow/event.json"
@@ -885,14 +885,14 @@ func (rc *RunContext) getGithubContext(ctx context.Context) *model.GithubContext
 	}
 
 	// allow to be overridden by user
-	if rc.Config.Env["GITHUB_SERVER_URL"] != "" {
-		ghc.ServerURL = rc.Config.Env["GITHUB_SERVER_URL"]
+	if rc.Config.Env["GITEA_SERVER_URL"] != "" {
+		ghc.ServerURL = rc.Config.Env["GITEA_SERVER_URL"]
 	}
-	if rc.Config.Env["GITHUB_API_URL"] != "" {
-		ghc.APIURL = rc.Config.Env["GITHUB_API_URL"]
+	if rc.Config.Env["GITEA_API_URL"] != "" {
+		ghc.APIURL = rc.Config.Env["GITEA_API_URL"]
 	}
-	if rc.Config.Env["GITHUB_GRAPHQL_URL"] != "" {
-		ghc.GraphQLURL = rc.Config.Env["GITHUB_GRAPHQL_URL"]
+	if rc.Config.Env["GITEA_GRAPHQL_URL"] != "" {
+		ghc.GraphQLURL = rc.Config.Env["GITEA_GRAPHQL_URL"]
 	}
 
 	return ghc
@@ -943,34 +943,34 @@ func nestedMapLookup(m map[string]interface{}, ks ...string) (rval interface{}) 
 
 func (rc *RunContext) withGithubEnv(ctx context.Context, github *model.GithubContext, env map[string]string) map[string]string {
 	env["CI"] = "true"
-	env["GITHUB_WORKFLOW"] = github.Workflow
-	env["GITHUB_RUN_ID"] = github.RunID
-	env["GITHUB_RUN_NUMBER"] = github.RunNumber
-	env["GITHUB_ACTION"] = github.Action
-	env["GITHUB_ACTION_PATH"] = github.ActionPath
-	env["GITHUB_ACTION_REPOSITORY"] = github.ActionRepository
-	env["GITHUB_ACTION_REF"] = github.ActionRef
-	env["GITHUB_ACTIONS"] = "true"
-	env["GITHUB_ACTOR"] = github.Actor
-	env["GITHUB_REPOSITORY"] = github.Repository
-	env["GITHUB_EVENT_NAME"] = github.EventName
-	env["GITHUB_EVENT_PATH"] = github.EventPath
-	env["GITHUB_WORKSPACE"] = github.Workspace
-	env["GITHUB_SHA"] = github.Sha
-	env["GITHUB_REF"] = github.Ref
-	env["GITHUB_REF_NAME"] = github.RefName
-	env["GITHUB_REF_TYPE"] = github.RefType
-	env["GITHUB_TOKEN"] = github.Token
-	env["GITHUB_JOB"] = github.Job
-	env["GITHUB_REPOSITORY_OWNER"] = github.RepositoryOwner
-	env["GITHUB_RETENTION_DAYS"] = github.RetentionDays
+	env["GITEA_WORKFLOW"] = github.Workflow
+	env["GITEA_RUN_ID"] = github.RunID
+	env["GITEA_RUN_NUMBER"] = github.RunNumber
+	env["GITEA_ACTION"] = github.Action
+	env["GITEA_ACTION_PATH"] = github.ActionPath
+	env["GITEA_ACTION_REPOSITORY"] = github.ActionRepository
+	env["GITEA_ACTION_REF"] = github.ActionRef
+	env["GITEA_ACTIONS"] = "true"
+	env["GITEA_ACTOR"] = github.Actor
+	env["GITEA_REPOSITORY"] = github.Repository
+	env["GITEA_EVENT_NAME"] = github.EventName
+	env["GITEA_EVENT_PATH"] = github.EventPath
+	env["GITEA_WORKSPACE"] = github.Workspace
+	env["GITEA_SHA"] = github.Sha
+	env["GITEA_REF"] = github.Ref
+	env["GITEA_REF_NAME"] = github.RefName
+	env["GITEA_REF_TYPE"] = github.RefType
+	env["GITEA_TOKEN"] = github.Token
+	env["GITEA_JOB"] = github.Job
+	env["GITEA_REPOSITORY_OWNER"] = github.RepositoryOwner
+	env["GITEA_RETENTION_DAYS"] = github.RetentionDays
 	env["RUNNER_PERFLOG"] = github.RunnerPerflog
 	env["RUNNER_TRACKING_ID"] = github.RunnerTrackingID
-	env["GITHUB_BASE_REF"] = github.BaseRef
-	env["GITHUB_HEAD_REF"] = github.HeadRef
-	env["GITHUB_SERVER_URL"] = github.ServerURL
-	env["GITHUB_API_URL"] = github.APIURL
-	env["GITHUB_GRAPHQL_URL"] = github.GraphQLURL
+	env["GITEA_BASE_REF"] = github.BaseRef
+	env["GITEA_HEAD_REF"] = github.HeadRef
+	env["GITEA_SERVER_URL"] = github.ServerURL
+	env["GITEA_API_URL"] = github.APIURL
+	env["GITEA_GRAPHQL_URL"] = github.GraphQLURL
 
 	{ // Adapt to Gitea
 		instance := rc.Config.GitHubInstance
@@ -978,9 +978,9 @@ func (rc *RunContext) withGithubEnv(ctx context.Context, github *model.GithubCon
 			!strings.HasPrefix(instance, "https://") {
 			instance = "https://" + instance
 		}
-		env["GITHUB_SERVER_URL"] = instance
-		env["GITHUB_API_URL"] = instance + "/api/v1" // the version of Gitea is v1
-		env["GITHUB_GRAPHQL_URL"] = ""               // Gitea doesn't support graphql
+		env["GITEA_SERVER_URL"] = instance
+		env["GITEA_API_URL"] = instance + "/api/v1" // the version of Gitea is v1
+		env["GITEA_GRAPHQL_URL"] = ""               // Gitea doesn't support graphql
 	}
 
 	if rc.Config.ArtifactServerPath != "" {

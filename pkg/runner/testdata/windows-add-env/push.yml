@@ -5,13 +5,13 @@ jobs:
     runs-on: windows-latest
     steps:
     - run: |
-        echo $env:GITHUB_ENV
-        echo "key=val" > $env:GITHUB_ENV
-        echo "key2<<EOF" >> $env:GITHUB_ENV
-        echo "line1" >> $env:GITHUB_ENV
-        echo "line2" >> $env:GITHUB_ENV
-        echo "EOF" >> $env:GITHUB_ENV
-        cat $env:GITHUB_ENV
+        echo $env:GITEA_ENV
+        echo "key=val" > $env:GITEA_ENV
+        echo "key2<<EOF" >> $env:GITEA_ENV
+        echo "line1" >> $env:GITEA_ENV
+        echo "line2" >> $env:GITEA_ENV
+        echo "EOF" >> $env:GITEA_ENV
+        cat $env:GITEA_ENV
     - run: |
         ls env:
         if($env:key -ne 'val') {
@@ -23,10 +23,10 @@ jobs:
           exit 1
         }
     - run: |
-        echo $env:GITHUB_ENV
-        echo "KEY=test" > $env:GITHUB_ENV
-        echo "Key=expected" > $env:GITHUB_ENV
-    - name: Assert GITHUB_ENV is merged case insensitive
+        echo $env:GITEA_ENV
+        echo "KEY=test" > $env:GITEA_ENV
+        echo "Key=expected" > $env:GITEA_ENV
+    - name: Assert GITEA_ENV is merged case insensitive
       run: exit 1
       if: env.KEY != 'expected' || env.Key != 'expected' || env.key != 'expected'
     - name: Assert step env is merged case insensitive

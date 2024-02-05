@@ -14,7 +14,7 @@ jobs:
           - run: exit 1
             shell: bash
             if: env.MY_ENV != 'val'
-          - run: echo "MY_ENV=returnedenv" > $GITHUB_ENV
+          - run: echo "MY_ENV=returnedenv" > $GITEA_ENV
             shell: bash
       shell: cp {0} action.yml
     - uses: ./

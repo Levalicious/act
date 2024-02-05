@@ -10,6 +10,6 @@ function checkEnvVar({ name, allowEmpty }) {
   console.log(`${name}=${process.env[name]}`);
 }
 
-checkEnvVar({ name: "GITHUB_ACTION", allowEmpty: false });
-checkEnvVar({ name: "GITHUB_ACTION_REPOSITORY", allowEmpty: true /* allows to be empty for local actions */ });
-checkEnvVar({ name: "GITHUB_ACTION_REF", allowEmpty: true /* allows to be empty for local actions */ });
+checkEnvVar({ name: "GITEA_ACTION", allowEmpty: false });
+checkEnvVar({ name: "GITEA_ACTION_REPOSITORY", allowEmpty: true /* allows to be empty for local actions */ });
+checkEnvVar({ name: "GITEA_ACTION_REF", allowEmpty: true /* allows to be empty for local actions */ });

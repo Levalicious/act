@@ -4,9 +4,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo "test<<World" > $GITHUB_ENV
-        echo "x=Thats really Weird" >> $GITHUB_ENV
-        echo "World" >> $GITHUB_ENV
+        echo "test<<World" > $GITEA_ENV
+        echo "x=Thats really Weird" >> $GITEA_ENV
+        echo "World" >> $GITEA_ENV
     - if: env.test != 'x=Thats really Weird'
       run: exit 1
     - if: env.x == 'Thats really Weird' # This assert is triggered by the broken impl of act

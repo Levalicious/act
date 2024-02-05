@@ -591,7 +591,7 @@ func newRunCommand(ctx context.Context, input *Input) func(*cobra.Command, []str
 			Secrets:                            secrets,
 			Vars:                               vars,
 			Inputs:                             inputs,
-			Token:                              secrets["GITHUB_TOKEN"],
+			Token:                              secrets["GITEA_TOKEN"],
 			InsecureSecrets:                    input.insecureSecrets,
 			Platforms:                          input.newPlatforms(),
 			Privileged:                         input.privileged,

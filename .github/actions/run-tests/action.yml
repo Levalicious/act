@@ -18,7 +18,7 @@ runs:
   steps:
     - uses: actions/github-script@v6
       with:
-        github-token: none # No reason to grant access to the GITHUB_TOKEN
+        github-token: none # No reason to grant access to the GITEA_TOKEN
         script: |
           let myOutput = '';
           var fs = require('fs');
@@ -62,7 +62,7 @@ runs:
           }
           args.push('./...');
           var exitcode = await exec.exec('go', args, options);
-          if(process.env.GITHUB_STEP_SUMMARY) {
+          if(process.env.GITEA_STEP_SUMMARY) {
             core.summary.addCodeBlock(myOutput);
             await core.summary.write();
           }

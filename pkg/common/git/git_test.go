@@ -222,7 +222,7 @@ func TestGitCloneExecutor(t *testing.T) {
 }
 
 func gitConfig() {
-	if os.Getenv("GITHUB_ACTIONS") == "true" {
+	if os.Getenv("GITEA_ACTIONS") == "true" {
 		var err error
 		if err = gitCmd("config", "--global", "user.email", "test@test.com"); err != nil {
 			log.Error(err)

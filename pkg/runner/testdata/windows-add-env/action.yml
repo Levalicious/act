@@ -2,6 +2,6 @@ runs:
   using: composite
   steps:
   - run: |
-      echo $env:GITHUB_ENV
-      echo "kEy=n/a" > $env:GITHUB_ENV
+      echo $env:GITEA_ENV
+      echo "kEy=n/a" > $env:GITEA_ENV
     shell: pwsh

@@ -189,7 +189,7 @@ var ExitCode;
 function exportVariable(name, val) {
     const convertedVal = utils_1.toCommandValue(val);
     process.env[name] = convertedVal;
-    const filePath = process.env['GITHUB_ENV'] || '';
+    const filePath = process.env['GITEA_ENV'] || '';
     if (filePath) {
         const delimiter = '_GitHubActionsFileCommandDelimeter_';
         const commandValue = `${name}<<${delimiter}${os.EOL}${convertedVal}${os.EOL}${delimiter}`;
@@ -213,7 +213,7 @@ exports.setSecret = setSecret;
  * @param inputPath
  */
 function addPath(inputPath) {
-    const filePath = process.env['GITHUB_PATH'] || '';
+    const filePath = process.env['GITEA_PATH'] || '';
     if (filePath) {
         file_command_1.issueCommand('PATH', inputPath);
     }
@@ -474,7 +474,7 @@ const fs = __importStar(__webpack_require__(5747));
 const os = __importStar(__webpack_require__(2087));
 const utils_1 = __webpack_require__(5278);
 function issueCommand(command, message) {
-    const filePath = process.env[`GITHUB_${command}`];
+    const filePath = process.env[`GITEA_${command}`];
     if (!filePath) {
         throw new Error(`Unable to find environment variable for file command ${command}`);
     }
@@ -636,32 +636,32 @@ class Context {
      */
     constructor() {
         this.payload = {};
-        if (process.env.GITHUB_EVENT_PATH) {
-            if (fs_1.existsSync(process.env.GITHUB_EVENT_PATH)) {
-                this.payload = JSON.parse(fs_1.readFileSync(process.env.GITHUB_EVENT_PATH, { encoding: 'utf8' }));
+        if (process.env.GITEA_EVENT_PATH) {
+            if (fs_1.existsSync(process.env.GITEA_EVENT_PATH)) {
+                this.payload = JSON.parse(fs_1.readFileSync(process.env.GITEA_EVENT_PATH, { encoding: 'utf8' }));
             }
             else {
-                const path = process.env.GITHUB_EVENT_PATH;
-                process.stdout.write(`GITHUB_EVENT_PATH ${path} does not exist${os_1.EOL}`);
+                const path = process.env.GITEA_EVENT_PATH;
+                process.stdout.write(`GITEA_EVENT_PATH ${path} does not exist${os_1.EOL}`);
             }
         }
-        this.eventName = process.env.GITHUB_EVENT_NAME;
-        this.sha = process.env.GITHUB_SHA;
-        this.ref = process.env.GITHUB_REF;
-        this.workflow = process.env.GITHUB_WORKFLOW;
-        this.action = process.env.GITHUB_ACTION;
-        this.actor = process.env.GITHUB_ACTOR;
-        this.job = process.env.GITHUB_JOB;
-        this.runNumber = parseInt(process.env.GITHUB_RUN_NUMBER, 10);
-        this.runId = parseInt(process.env.GITHUB_RUN_ID, 10);
+        this.eventName = process.env.GITEA_EVENT_NAME;
+        this.sha = process.env.GITEA_SHA;
+        this.ref = process.env.GITEA_REF;
+        this.workflow = process.env.GITEA_WORKFLOW;
+        this.action = process.env.GITEA_ACTION;
+        this.actor = process.env.GITEA_ACTOR;
+        this.job = process.env.GITEA_JOB;
+        this.runNumber = parseInt(process.env.GITEA_RUN_NUMBER, 10);
+        this.runId = parseInt(process.env.GITEA_RUN_ID, 10);
     }
     get issue() {
         const payload = this.payload;
         return Object.assign(Object.assign({}, this.repo), { number: (payload.issue || payload.pull_request || payload).number });
     }
     get repo() {
-        if (process.env.GITHUB_REPOSITORY) {
-            const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
+        if (process.env.GITEA_REPOSITORY) {
+            const [owner, repo] = process.env.GITEA_REPOSITORY.split('/');
             return { owner, repo };
         }
         if (this.payload.repository) {
@@ -670,7 +670,7 @@ class Context {
                 repo: this.payload.repository.name
             };
         }
-        throw new Error("context.repo requires a GITHUB_REPOSITORY environment variable like 'owner/repo'");
+        throw new Error("context.repo requires a GITEA_REPOSITORY environment variable like 'owner/repo'");
     }
 }
 exports.Context = Context;
@@ -710,7 +710,7 @@ exports.context = new Context.Context();
 /**
  * Returns a hydrated octokit ready to use for GitHub Actions
  *
- * @param     token    the repo PAT or GITHUB_TOKEN
+ * @param     token    the repo PAT or GITEA_TOKEN
  * @param     options  other options to set
  */
 function getOctokit(token, options) {
@@ -764,7 +764,7 @@ function getProxyAgent(destinationUrl) {
 }
 exports.getProxyAgent = getProxyAgent;
 function getApiBaseUrl() {
-    return process.env['GITHUB_API_URL'] || 'https://api.github.com';
+    return process.env['GITEA_API_URL'] || 'https://api.github.com';
 }
 exports.getApiBaseUrl = getApiBaseUrl;
 //# sourceMappingURL=utils.js.map
@@ -815,7 +815,7 @@ exports.GitHub = core_1.Octokit.plugin(plugin_rest_endpoint_methods_1.restEndpoi
 /**
  * Convience function to correctly format Octokit Options to pass into the constructor.
  *
- * @param     token    the repo PAT or GITHUB_TOKEN
+ * @param     token    the repo PAT or GITEA_TOKEN
  * @param     options  other options to set
  */
 function getOctokitOptions(token, options) {

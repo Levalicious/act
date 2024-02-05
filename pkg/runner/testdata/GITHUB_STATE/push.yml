@@ -7,11 +7,11 @@ jobs:
       with:
         pre: |
           env
-          echo mystate0=mystateval > $GITHUB_STATE
+          echo mystate0=mystateval > $GITEA_STATE
           echo "::save-state name=mystate1::mystateval"
         main: |
           env
-          echo mystate2=mystateval > $GITHUB_STATE
+          echo mystate2=mystateval > $GITEA_STATE
           echo "::save-state name=mystate3::mystateval"
         post: |
           env
@@ -27,11 +27,11 @@ jobs:
       with:
         pre: |
           env
-          echo mystate0=mystateval > $GITHUB_STATE
+          echo mystate0=mystateval > $GITEA_STATE
           echo "::save-state name=mystate1::mystateval"
         main: |
           env
-          echo mystate2=mystateval > $GITHUB_STATE
+          echo mystate2=mystateval > $GITEA_STATE
           echo "::save-state name=mystate3::mystateval"
         post: |
           env
@@ -44,5 +44,5 @@ jobs:
       with:
         main: |
           env
-          echo mystate0=mystateerror > $GITHUB_STATE
+          echo mystate0=mystateerror > $GITEA_STATE
           echo "::save-state name=mystate1::mystateerror"

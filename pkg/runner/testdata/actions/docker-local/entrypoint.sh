@@ -5,4 +5,4 @@ time=$(date)
 echo ::set-output name=time::$time
 echo ::set-output name=whoami::$WHOAMI
 
-echo "SOMEVAR=$1" >>$GITHUB_ENV
+echo "SOMEVAR=$1" >>$GITEA_ENV

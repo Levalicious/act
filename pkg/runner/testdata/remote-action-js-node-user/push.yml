@@ -13,7 +13,7 @@ jobs:
       run: |
         echo "USER: $(id -un) expected: node"
         [[ "$(id -un)" = "node" ]]
-        echo "TEST=Value" >> $GITHUB_OUTPUT
+        echo "TEST=Value" >> $GITEA_OUTPUT
       shell: bash
 
     - name: check if file command worked

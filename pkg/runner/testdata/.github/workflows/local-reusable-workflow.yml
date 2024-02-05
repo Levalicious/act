@@ -76,7 +76,7 @@ jobs:
     - name: test output
       id: output_test
       run: |
-        echo "value=${{ inputs.string_required }}" >> $GITHUB_OUTPUT
+        echo "value=${{ inputs.string_required }}" >> $GITEA_OUTPUT
 
     outputs:
       job-output: ${{ steps.output_test.outputs.value }}

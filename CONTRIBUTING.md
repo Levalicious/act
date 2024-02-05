@@ -47,7 +47,7 @@ When submitting code, please make every effort to follow existing conventions an
   - Please refer to the [Makefile](Makefile) or [`lint` job in our workflow](.github/workflows/checks.yml) to see how to those linters/formatters work.
   - You can lint codebase by running `go run main.go -j lint --env RUN_LOCAL=true` or `act -j lint --env RUN_LOCAL=true`
   - In `Makefile`, there are tools that require `npx` which is shipped with `nodejs`.
-  - Our `Makefile` exports `GITHUB_TOKEN` from `~/.config/github/token`, you have been warned.
+  - Our `Makefile` exports `GITEA_TOKEN` from `~/.config/github/token`, you have been warned.
   - You can run `make pr` to cleanup dependencies, format/lint code and run tests.
 - All dependencies must be defined in the `go.mod` file.
   - Advanced IDEs and code editors (like VSCode) will take care of that, but to be sure, run `go mod tidy` to validate dependencies.

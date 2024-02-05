@@ -105,19 +105,19 @@ func runStepExecutor(step step, stage stepStage, executor common.Executor) commo
 		actPath := rc.JobContainer.GetActPath()
 
 		outputFileCommand := path.Join("workflow", "outputcmd.txt")
-		(*step.getEnv())["GITHUB_OUTPUT"] = path.Join(actPath, outputFileCommand)
+		(*step.getEnv())["GITEA_OUTPUT"] = path.Join(actPath, outputFileCommand)
 
 		stateFileCommand := path.Join("workflow", "statecmd.txt")
-		(*step.getEnv())["GITHUB_STATE"] = path.Join(actPath, stateFileCommand)
+		(*step.getEnv())["GITEA_STATE"] = path.Join(actPath, stateFileCommand)
 
 		pathFileCommand := path.Join("workflow", "pathcmd.txt")
-		(*step.getEnv())["GITHUB_PATH"] = path.Join(actPath, pathFileCommand)
+		(*step.getEnv())["GITEA_PATH"] = path.Join(actPath, pathFileCommand)
 
 		envFileCommand := path.Join("workflow", "envs.txt")
-		(*step.getEnv())["GITHUB_ENV"] = path.Join(actPath, envFileCommand)
+		(*step.getEnv())["GITEA_ENV"] = path.Join(actPath, envFileCommand)
 
 		summaryFileCommand := path.Join("workflow", "SUMMARY.md")
-		(*step.getEnv())["GITHUB_STEP_SUMMARY"] = path.Join(actPath, summaryFileCommand)
+		(*step.getEnv())["GITEA_STEP_SUMMARY"] = path.Join(actPath, summaryFileCommand)
 
 		_ = rc.JobContainer.Copy(actPath, &container.FileEntry{
 			Name: outputFileCommand,

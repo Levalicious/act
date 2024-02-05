@@ -202,7 +202,7 @@ func runActionImpl(step actionStep, actionDir string, remoteAction *remoteAction
 func setupActionEnv(ctx context.Context, step actionStep, _ *remoteAction) error {
 	rc := step.getRunContext()
 
-	// A few fields in the environment (e.g. GITHUB_ACTION_REPOSITORY)
+	// A few fields in the environment (e.g. GITEA_ACTION_REPOSITORY)
 	// are dependent on the action. That means we can complete the
 	// setup only after resolving the whole action model and cloning
 	// the action
